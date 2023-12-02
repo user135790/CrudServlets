@@ -1,0 +1,17 @@
+edu\unicauca\apiweb\crudservlets\persistence\entities\Offices.class
+edu\unicauca\apiweb\crudservlets\persistence\entities\Offices_.class
+edu\unicauca\apiweb\crudservlets\persistence\entities\Employees.class
+edu\unicauca\apiweb\crudservlets\persistence\entities\Users.class
+edu\unicauca\apiweb\crudservlets\persistence\jpa\exceptions\NonexistentEntityException.class
+edu\unicauca\apiweb\crudservlets\persistence\jpa\OfficesJpaController.class
+edu\unicauca\apiweb\crudservlets\persistence\entities\Employees_.class
+edu\unicauca\apiweb\crudservlets\persistence\jpa\EmployeesJpaController.class
+edu\unicauca\apiweb\crudservlets\persistence\entities\Users_.class
+edu\unicauca\apiweb\crudservlets\control\ServletEmloyees.class
+edu\unicauca\apiweb\crudservlets\persistence\dto\QueryProductLine.class
+edu\unicauca\apiweb\crudservlets\persistence\jpa\exceptions\IllegalOrphanException.class
+edu\unicauca\apiweb\crudservlets\persistence\jpa\UsersJpaController.class
+edu\unicauca\apiweb\crudservlets\control\ServletQueries.class
+edu\unicauca\apiweb\crudservlets\persistence\jpa\QueriesController.class
+edu\unicauca\apiweb\crudservlets\control\ServletLogin.class
+edu\unicauca\apiweb\crudservlets\persistence\jpa\exceptions\PreexistingEntityException.class

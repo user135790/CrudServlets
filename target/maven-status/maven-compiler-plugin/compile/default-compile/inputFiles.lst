@@ -1,0 +1,14 @@
+C:\Users\Santiago\Documents\NetBeansProjects\CrudServlets\src\main\java\edu\unicauca\apiweb\crudservlets\persistence\entities\Offices.java
+C:\Users\Santiago\Documents\NetBeansProjects\CrudServlets\src\main\java\edu\unicauca\apiweb\crudservlets\persistence\jpa\OfficesJpaController.java
+C:\Users\Santiago\Documents\NetBeansProjects\CrudServlets\src\main\java\edu\unicauca\apiweb\crudservlets\persistence\jpa\QueriesController.java
+C:\Users\Santiago\Documents\NetBeansProjects\CrudServlets\src\main\java\edu\unicauca\apiweb\crudservlets\persistence\dto\QueryProductLine.java
+C:\Users\Santiago\Documents\NetBeansProjects\CrudServlets\src\main\java\edu\unicauca\apiweb\crudservlets\control\ServletQueries.java
+C:\Users\Santiago\Documents\NetBeansProjects\CrudServlets\src\main\java\edu\unicauca\apiweb\crudservlets\persistence\jpa\EmployeesJpaController.java
+C:\Users\Santiago\Documents\NetBeansProjects\CrudServlets\src\main\java\edu\unicauca\apiweb\crudservlets\persistence\jpa\UsersJpaController.java
+C:\Users\Santiago\Documents\NetBeansProjects\CrudServlets\src\main\java\edu\unicauca\apiweb\crudservlets\persistence\entities\Users.java
+C:\Users\Santiago\Documents\NetBeansProjects\CrudServlets\src\main\java\edu\unicauca\apiweb\crudservlets\persistence\entities\Employees.java
+C:\Users\Santiago\Documents\NetBeansProjects\CrudServlets\src\main\java\edu\unicauca\apiweb\crudservlets\control\ServletLogin.java
+C:\Users\Santiago\Documents\NetBeansProjects\CrudServlets\src\main\java\edu\unicauca\apiweb\crudservlets\persistence\jpa\exceptions\PreexistingEntityException.java
+C:\Users\Santiago\Documents\NetBeansProjects\CrudServlets\src\main\java\edu\unicauca\apiweb\crudservlets\persistence\jpa\exceptions\IllegalOrphanException.java
+C:\Users\Santiago\Documents\NetBeansProjects\CrudServlets\src\main\java\edu\unicauca\apiweb\crudservlets\control\ServletEmloyees.java
+C:\Users\Santiago\Documents\NetBeansProjects\CrudServlets\src\main\java\edu\unicauca\apiweb\crudservlets\persistence\jpa\exceptions\NonexistentEntityException.java
