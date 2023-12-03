@@ -109,6 +109,7 @@ public class EmployeesJpaController implements Serializable {
                 employees.setOfficeCode(officeCodeNew);
             }
             List<Employees> attachedEmployeesListNew = new ArrayList<Employees>();
+            
             for (Employees employeesListNewEmployeesToAttach : employeesListNew) {
                 employeesListNewEmployeesToAttach = em.getReference(employeesListNewEmployeesToAttach.getClass(), employeesListNewEmployeesToAttach.getEmployeeNumber());
                 attachedEmployeesListNew.add(employeesListNewEmployeesToAttach);

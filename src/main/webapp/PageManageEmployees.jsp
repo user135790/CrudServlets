@@ -4,8 +4,21 @@
     Author     : Santiago
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="edu.unicauca.apiweb.crudservlets.persistence.entities.Employees"%>
+<%@page import="edu.unicauca.apiweb.crudservlets.persistence.jpa.EmployeesJpaController"%>
+<%@page import="javax.persistence.Persistence"%>
+<%@page import="javax.persistence.EntityManagerFactory"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="/Header.jsp" />
+
+<%
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("edu.unicauca.apiweb_CrudServlets_war_1.0PU");
+    EmployeesJpaController employeeControl = new EmployeesJpaController(emf);
+    
+    List<Employees> employees = employeeControl.findEmployeesEntities();
+   
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,20 +36,20 @@
                             </button>
                         </div>
                     <div class="card card-body">
-                        <form action="save.php" method="POST">
+                        <form action="ServletEmployees" method="POST">
                             <div class="form-group">
                                 <label for=""></label>
-                                <input type="text" name="numemp" class="form-control"
+                                <input type="text" name="employeeNumber" class="form-control"
                                 placeholder="Numero de empleado" autofocus>
                             </div>
                             <div class="form-group">
                                 <label for=""></label>
-                                <input type="text" name="lastname" class="form-control"
+                                <input type="text" name="firstName" class="form-control"
                                 placeholder="Nombre" autofocus>
                             </div>
                             <div class="form-group">
                                 <label for=""></label>
-                                <input type="text" name="firstname" class="form-control"
+                                <input type="text" name="lastName" class="form-control"
                                 placeholder="Apellido" autofocus>
                             </div>
                             <div class="form-group">
@@ -51,12 +64,12 @@
                             </div>
                             <div class="form-group">
                                 <label for=""></label>
-                                <input type="text" name="codeoffice" class="form-control"
+                                <input type="text" name="officeCode" class="form-control"
                                 placeholder="Codigo de oficina(1-7)" autofocus>
                             </div>
                             <div class="form-group">
                                 <label for=""></label>
-                                <input type="text" name="jobtitle" class="form-control"
+                                <input type="text" name="jobTitle" class="form-control"
                                 placeholder="Tipo de trabajo" autofocus>
                             </div>
                             <div class="form-group">
@@ -82,28 +95,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                                $query = "SELECT * FROM employees";
-                                $result = mysqli_query($con, $query);
-
-                                while($row = mysqli_fetch_array($result)){ ?>
+                            <%
+                                for (Employees emp :employees){
+                            %>
                                     <tr>
-                                        <td><?php echo $row['employeeNumber'] ?></td>
-                                        <td><?php echo $row['lastName'] ?></td>
-                                        <td><?php echo $row['firstName'] ?></td>
-                                        <td><?php echo $row['extension'] ?></td>
-                                        <td><?php echo $row['email'] ?></td>
-                                        <td><?php echo $row['officeCode'] ?></td>
-                                        <td><?php echo $row['jobTitle'] ?></td>
+                                        <td><%= emp.getEmployeeNumber() %></td>
+                                        <td><%= emp.getLastName() %></td>
+                                        <td><%= emp.getFirstName() %></td>
+                                        <td><%= emp.getExtension() %></td>
+                                        <td><%= emp.getEmail() %></td>
+                                        <td><%= emp.getOfficeCode().getOfficeCode() %></td>
+                                        <td><%= emp.getJobTitle() %></td>
                                         <td>
-                                            <a href="edit.php?employeeNumber=<?php echo $row['employeeNumber'] ?>">
+                                            <a href="PageEditEmployees.jsp?employeeNumber=<%= emp.getEmployeeNumber() %>">
                                                 Editar
                                             </a>
-                                            <a href="delete.php?employeeNumber=<?php echo $row['employeeNumber'] ?>">
+                                            <a href="ServletDeleteEmployees?employeeNumber=<%= emp.getEmployeeNumber() %>">
                                                 Eliminar
                                             </a>
                                         </td>
                                     </tr>
+                                    <% } %>
                         </tbody>
                     </table>
                 </div>

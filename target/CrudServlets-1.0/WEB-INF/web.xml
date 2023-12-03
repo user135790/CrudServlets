@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>ServletLogin</servlet-name>
-        <servlet-class>edu.unicauca.apiweb.crudservlets.control.ServletLogin</servlet-class>
+        <servlet-name>ServletEmployees</servlet-name>
+        <servlet-class>edu.unicauca.apiweb.crudservlets.control.ServletEmployees</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ServletEmloyees</servlet-name>
-        <servlet-class>edu.unicauca.apiweb.crudservlets.control.ServletEmloyees</servlet-class>
+        <servlet-name>ServletEditEmployees</servlet-name>
+        <servlet-class>edu.unicauca.apiweb.crudservlets.control.ServletEditEmployees</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ServletQueries</servlet-name>
-        <servlet-class>edu.unicauca.apiweb.crudservlets.control.ServletQueries</servlet-class>
+        <servlet-name>ServletDeleteEmployees</servlet-name>
+        <servlet-class>edu.unicauca.apiweb.crudservlets.control.ServletDeleteEmployees</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ServletLogin</servlet-name>
-        <url-pattern>/ServletLogin</url-pattern>
+        <servlet-name>ServletEmployees</servlet-name>
+        <url-pattern>/ServletEmployees</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletEmloyees</servlet-name>
-        <url-pattern>/ServletEmloyees</url-pattern>
+        <servlet-name>ServletEditEmployees</servlet-name>
+        <url-pattern>/ServletEditEmployees</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletQueries</servlet-name>
-        <url-pattern>/ServletQueries</url-pattern>
+        <servlet-name>ServletDeleteEmployees</servlet-name>
+        <url-pattern>/ServletDeleteEmployees</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
