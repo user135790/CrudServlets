@@ -16,6 +16,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,50 +27,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ServletEditEmployees extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    
     private final static String PU = "edu.unicauca.apiweb_CrudServlets_war_1.0PU";
     
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletEditEmployees</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletEditEmployees at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -81,21 +40,29 @@ public class ServletEditEmployees extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-                
+        
+        //Crear cookies para despliegue de alert
+        Cookie cookieMessage;
+        Cookie cookieMessageType;
+        
+        //Crear entity manager para gestionar tablas Empleados y Oficinas
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(PU);;
         EmployeesJpaController employeeControl = new EmployeesJpaController(emf);
         OfficesJpaController officeControl = new OfficesJpaController(emf);
         
+        //Obtener los datos del formulario
         int employeeNumber = Integer.parseInt(req.getParameter("employeeNumber"));
         String lastName = req.getParameter("lastName");
         String firstName = req.getParameter("firstName");
         String extension = req.getParameter("extension");
         String email = req.getParameter("email");
-        int officeCode = Integer.parseInt(req.getParameter("officeCode"));
-
         String jobTitle = req.getParameter("jobTitle");
+        
+        //Obtener el objeto oficina correspondiente al empleado editado
+        int officeCode = Integer.parseInt(req.getParameter("officeCode"));
         Offices office = officeControl.findOffices(String.valueOf(officeCode));
         
+        //Obtener empleado completo en base de datos y modificar la representacion de objeto
         Employees editEmployee = employeeControl.findEmployees(employeeNumber);
         editEmployee.setEmail(email);
         editEmployee.setExtension(extension);
@@ -106,22 +73,21 @@ public class ServletEditEmployees extends HttpServlet {
         
         try {
             employeeControl.edit(editEmployee);
-            resp.sendRedirect("PageManageEmployees.jsp");
+            
+            //Modificar cookies con los valores correspondientes
+            cookieMessage = new Cookie("message", "ExitoEditando");
+            cookieMessageType = new Cookie("message_type", "info");
+            
+            //Enviar cookies a la peticion
+            resp.addCookie(cookieMessage);
+            resp.addCookie(cookieMessageType);
+            
+            resp.sendRedirect("index.jsp");
         } catch (Exception ex) {
             Logger.getLogger(ServletEmployees.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

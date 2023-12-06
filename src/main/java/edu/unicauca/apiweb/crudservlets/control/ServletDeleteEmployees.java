@@ -15,6 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,23 +38,6 @@ public class ServletDeleteEmployees extends HttpServlet {
     
     private final static String PU = "edu.unicauca.apiweb_CrudServlets_war_1.0PU";
     
-    
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletDeleteEmployees</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletDeleteEmployees at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -68,43 +52,33 @@ public class ServletDeleteEmployees extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        //Crear Cookies
+        Cookie cookieMessage;
+        Cookie cookieMessageType;
+        
+        //Crear Entity manager para gestionar tabla Empleados
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(PU);;
-                
         EmployeesJpaController employeeControl = new EmployeesJpaController(emf);
         
+        //Obtener numero de empleado a eliminar
         int employeeNumber = Integer.parseInt(request.getParameter("employeeNumber"));
-        
+
         try {
             employeeControl.destroy(employeeNumber);
-            response.sendRedirect("PageManageEmployees.jsp");
+            
+            //modificar cookies para alert
+            cookieMessage = new Cookie("message", "EmpleadoEliminado");
+            cookieMessageType = new Cookie("message_type", "danger");
+            
+            //añadir cookies a la peticion
+            response.addCookie(cookieMessage);
+            response.addCookie(cookieMessageType);
+            
+            response.sendRedirect("index.jsp");
+            
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(ServletDeleteEmployees.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

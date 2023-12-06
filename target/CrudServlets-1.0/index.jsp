@@ -15,26 +15,39 @@
 <%
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("edu.unicauca.apiweb_CrudServlets_war_1.0PU");
     EmployeesJpaController employeeControl = new EmployeesJpaController(emf);
+    String messageType = "";
+    String message = "";
     
     List<Employees> employees = employeeControl.findEmployeesEntities();
    
+    if(request.getCookies() != null){
+        for(int i = 0; i < request.getCookies().length; i++){
+            String cookieName = request.getCookies()[i].getName();
+            if(cookieName.equals("message")){
+                 message = request.getCookies()[i].getValue();
+            }
+            if(cookieName.equals("message_type")){
+                messageType = request.getCookies()[i].getValue();
+            }
+        }
+    }
+
 %>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
     <body>
         <div class="container p-4">
             <div class="row">
                 <div class="col-md-4">
-                        <div class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
-                            <strong><?= $_SESSION['message'] ?></strong> 
+                    
+                    <% if(request.getCookies() != null) {%>
+                        <div class="alert alert-<%= messageType %> alert-dismissible fade show" role="alert">
+                            <strong><%= message %></strong> 
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+                    <% } %>
                     <div class="card card-body">
                         <form action="ServletEmployees" method="POST">
                             <div class="form-group">

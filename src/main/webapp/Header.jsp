@@ -17,7 +17,7 @@
 
     <nav class="navbar navbar-dark bg-dark">
         <div class="container">
-            <a href="index.php" class="navbar-brand">TallerJava</a>
+            <a href="index.jsp" class="navbar-brand">TallerJava</a>
         </div>
     </nav>
 </html>
