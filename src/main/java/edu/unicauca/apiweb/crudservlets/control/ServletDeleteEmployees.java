@@ -69,6 +69,8 @@ public class ServletDeleteEmployees extends HttpServlet {
             //modificar cookies para alert
             cookieMessage = new Cookie("message", "EmpleadoEliminado");
             cookieMessageType = new Cookie("message_type", "danger");
+            cookieMessageType.setMaxAge(1);
+            cookieMessage.setMaxAge(1);
             
             //añadir cookies a la peticion
             response.addCookie(cookieMessage);

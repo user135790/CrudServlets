@@ -92,6 +92,8 @@ public class ServletEmployees extends HttpServlet {
             //Modificar cookies con los valores correspondientes
             cookieMessage = new Cookie("message", "EmpleadoGuardado");
             cookieMessageType = new Cookie("message_type", "success");
+            cookieMessageType.setMaxAge(1);
+            cookieMessage.setMaxAge(1);
             
             //Enviar cookies a la peticion
             resp.addCookie(cookieMessage);

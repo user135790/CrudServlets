@@ -46,7 +46,7 @@ public class ServletEditEmployees extends HttpServlet {
         Cookie cookieMessageType;
         
         //Crear entity manager para gestionar tablas Empleados y Oficinas
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PU);;
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PU);
         EmployeesJpaController employeeControl = new EmployeesJpaController(emf);
         OfficesJpaController officeControl = new OfficesJpaController(emf);
         
@@ -77,6 +77,8 @@ public class ServletEditEmployees extends HttpServlet {
             //Modificar cookies con los valores correspondientes
             cookieMessage = new Cookie("message", "ExitoEditando");
             cookieMessageType = new Cookie("message_type", "info");
+            cookieMessageType.setMaxAge(1);
+            cookieMessage.setMaxAge(1);
             
             //Enviar cookies a la peticion
             resp.addCookie(cookieMessage);
